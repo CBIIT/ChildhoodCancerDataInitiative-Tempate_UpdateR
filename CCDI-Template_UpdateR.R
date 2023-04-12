@@ -254,9 +254,31 @@ for (x in 1:dim(wb_node_prop_df)[1]){
           wb_node_prop_not_placements_df=rbind(wb_node_prop_not_placements_df,wb_node_prop_add)
         }
       }
+    }else{
+      #if the property is found elsewhere, but not in a file node or diagnosis node (since those are two nodes that share a decent subset of properties)
+      if(wb_prop %in% temp_node_prop_df$temp_prop &
+         (!grepl(pattern = "file", x = wb_node) &
+          !grepl(pattern = "diagnosis", x = wb_node))){
+        temp_node_pos=grep(pattern = TRUE, x = temp_node_prop_df$temp_prop %in% wb_prop)
+        temp_node_new=temp_node_prop_df$temp_node[temp_node_pos]
+        workbook_list_temp[temp_node_new][[1]][wb_prop]=workbook_list[wb_node][[1]][wb_prop]
+        
+        cat("\nWARNING: The following property, ",wb_prop,", for the following node, ",wb_node, ", was instead placed in the following node, ", temp_node_new,", for the same property in the new template.", sep="")
+        
+        wb_node_prop_add$wb_change="relocated"
+        wb_node_prop_add$temp_node_new=temp_node_new
+        wb_node_prop_not_placements_df=rbind(wb_node_prop_not_placements_df,wb_node_prop_add)
+      }else{
+        cat("\nERROR: The following property, ",wb_prop,", for the following node, ",wb_node, ", did not find a placement in the new template.", sep="")
+        
+        wb_node_prop_add$wb_change="not_placed"
+        wb_node_prop_add$temp_node_new=NA
+        wb_node_prop_not_placements_df=rbind(wb_node_prop_not_placements_df,wb_node_prop_add)
+      }
     }
   }
 }
+
 
 
 #Write out of data frame to explain what was placed 
