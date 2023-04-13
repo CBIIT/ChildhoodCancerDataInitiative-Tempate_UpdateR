@@ -116,7 +116,7 @@ sheet_names_file=sheet_names_file[!sheet_names_file %in% non_template_sheets]
 sheet_names_temp=sheet_names_temp[!sheet_names_temp %in% non_template_sheets]
 
 # A bank of NA terms to make sure NAs are brought in correctly
-NA_bank=c("NA","na","N/A","n/a")
+NA_bank=c("NA","na","N/A","n/a","")
 
 #Establish the list for incoming file
 workbook_list=list()
