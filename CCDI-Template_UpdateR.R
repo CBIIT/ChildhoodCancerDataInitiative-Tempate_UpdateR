@@ -12,7 +12,7 @@
 
 #Run the following command in a terminal where R is installed for help.
 
-#Rscript --vanilla CCDI-CatchERR.R --help
+#Rscript --vanilla Template_UpdateR.R --help
 
 
 ##################
