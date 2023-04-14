@@ -80,6 +80,8 @@ template_path=file_path_as_absolute(opt$template)
 
 cat("\nThe CCDI data template is being updated at this time.\n")
 
+#Obtain template version
+version=suppressMessages(read_xlsx(path = template_path,col_names = FALSE, trim_ws = TRUE, na=NA_bank, sheet = "README and INSTRUCTIONS", guess_max = 1000000, col_types = "text"))[1,3][[1]]
 
 ###########
 #
@@ -94,6 +96,8 @@ path=paste(dirname(file_path),"/",sep = "")
 
 #Output file name based on input file name and date/time stamped.
 output_file=paste(file_name,
+                  "_",
+                  version,
                   "_Updater",
                   stri_replace_all_fixed(
                     str = Sys.Date(),
@@ -249,7 +253,7 @@ for (x in 1:dim(wb_node_prop_df)[1]){
         }else{
           cat("\nERROR: The following property, ",wb_prop,", for the following node, ",wb_node, ", did not find a placement in the new template.", sep="")
           
-          wb_node_prop_add$wb_change="not_placed"
+          wb_node_prop_add$wb_change="not_transfered"
           wb_node_prop_add$temp_node_new=NA
           wb_node_prop_not_placements_df=rbind(wb_node_prop_not_placements_df,wb_node_prop_add)
         }
