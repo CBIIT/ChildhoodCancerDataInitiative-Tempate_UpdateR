@@ -81,7 +81,7 @@ template_path=file_path_as_absolute(opt$template)
 cat("\nThe CCDI data template is being updated at this time.\n")
 
 #Obtain template version
-version=suppressMessages(read_xlsx(path = template_path,col_names = FALSE, trim_ws = TRUE, na=NA_bank, sheet = "README and INSTRUCTIONS", guess_max = 1000000, col_types = "text"))[1,3][[1]]
+version=suppressMessages(read_xlsx(path = template_path,col_names = FALSE, trim_ws = TRUE, sheet = "README and INSTRUCTIONS", guess_max = 1000000, col_types = "text"))[1,3][[1]]
 
 ###########
 #
