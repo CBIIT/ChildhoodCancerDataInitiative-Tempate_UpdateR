@@ -1,4 +1,4 @@
-# ChildhoodCancerDataInitiative-Tempate_UpdateR
+# ChildhoodCancerDataInitiative-Tempate_UpdateR (ARCHIVED)
 This script will take a CCDI metadata manifest file and transfer the contents to a different version of the CCDI metadata manifest.
 
 To run the script please obtain a [CCDI Submission Template](https://github.com/CBIIT/ccdi-model/tree/main/metadata-manifest) and, run the following command in a terminal where R is installed for help.
